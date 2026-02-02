@@ -1,25 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
-import type { Metadata } from "next";
+import { BoboxNavAndHero } from "@/components/demos/agency/bobox-agency/BoboxNavAndHero";
 import {
   boboxAgencyData,
   designerCredit,
 } from "@/data/demos/agency/boboxAgencyData";
-import { SparklesIcon, ArrowUpRightIcon, CheckIcon } from "@/components/Icons";
-
-export const metadata: Metadata = {
-  title: "Bobox Agency | Avant-Garde Digital Flagship & Motion Engineering",
-  description:
-    "Live showcase of Bobox Agency. Deep obsidian canvas, amber-gold accents, kinetic typography, and high-conversion editorial UX.",
-};
+import { CheckIcon } from "@/components/Icons";
 
 export default function BoboxAgencyPage() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const isDark = theme === "dark";
+
   const {
     agencyName,
-    heroTagline,
-    heroHeadline,
-    heroSubheadline,
-    stats,
     projects,
     capabilities,
     journalItems,
@@ -27,139 +22,45 @@ export default function BoboxAgencyPage() {
     contact,
   } = boboxAgencyData;
 
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
   return (
-    <div className="min-h-screen bg-[#07080b] text-[#f8fafc] selection:bg-amber-500 selection:text-black">
-      {/* Top Fixed Agency Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-[#1b1f2e]/80 bg-[#07080b]/90 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          {/* Logo & Hub Return */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="/"
-              className="group flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-amber-400 transition-colors"
-            >
-              <span>←</span>
-              <span className="underline-offset-4 group-hover:underline">99 Showcase Hub</span>
-            </Link>
-            <span className="text-zinc-700">/</span>
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 text-zinc-950 font-black text-xs flex items-center justify-center tracking-wider shadow-md shadow-amber-500/20">
-                BX
-              </div>
-              <span className="text-sm font-bold tracking-tight text-white uppercase">
-                {agencyName}
-              </span>
-            </div>
-          </div>
+    <div
+      className={`min-h-screen transition-colors duration-500 scroll-smooth selection:bg-amber-500 selection:text-black ${
+        isDark
+          ? "bg-[#0c0c0c] text-[#f8fafc]"
+          : "bg-[#f7f5f0] text-[#1a1917]"
+      }`}
+    >
+      {/* Sticky Top Nav & Avant-Garde Editorial Hero */}
+      <BoboxNavAndHero theme={theme} onThemeToggle={toggleTheme} />
 
-          {/* Center Status Badge */}
-          <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-[#121520] border border-[#1f2438] text-xs font-mono">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-zinc-300">Live Demo Flagship</span>
-            <span className="text-zinc-600">•</span>
-            <span className="text-amber-400 font-semibold">Obsidian + Amber-Gold</span>
-          </div>
-
-          {/* Right: Lead Designer Monogram Chip + Contact CTA */}
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#0d0f16] border border-[#1f2438] text-xs">
-              <div className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 font-bold text-[10px] flex items-center justify-center border border-amber-500/30">
-                {designerCredit.monogram}
-              </div>
-              <div className="flex flex-col">
-                <span className="font-semibold text-zinc-200 text-[11px] leading-tight">
-                  {designerCredit.name}
-                </span>
-                <span className="text-zinc-500 text-[9px] font-mono leading-tight">
-                  Lead Designer
-                </span>
-              </div>
-            </div>
-
-            <a
-              href={`mailto:${contact.inquiriesEmail}`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors shadow-sm shadow-amber-500/25 active:scale-95"
-            >
-              <span>Initiate Project</span>
-              <ArrowUpRightIcon className="w-3.5 h-3.5 text-zinc-950" />
-            </a>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section className="relative pt-20 sm:pt-28 pb-20 overflow-hidden border-b border-[#1b1f2e]/60">
-        {/* Subtle Obsidian Mesh Gradient Glow */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-amber-500/10 via-amber-600/5 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl">
-            {/* Sector Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#121520] border border-amber-500/30 text-amber-400 text-xs font-mono mb-6">
-              <SparklesIcon className="w-3.5 h-3.5" />
-              <span>{heroTagline}</span>
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] text-white">
-              {heroHeadline}
-            </h1>
-
-            {/* Subhead */}
-            <p className="mt-6 text-base sm:text-xl text-zinc-400 max-w-2xl leading-relaxed">
-              {heroSubheadline}
-            </p>
-
-            {/* Hero CTAs */}
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
-                href="#projects"
-                className="px-6 py-3.5 rounded-xl text-sm font-bold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20 active:scale-95 inline-flex items-center gap-2"
-              >
-                <span>View Selected Works</span>
-                <span>↓</span>
-              </a>
-              <a
-                href="#capabilities"
-                className="px-6 py-3.5 rounded-xl text-sm font-semibold border border-[#1f2438] text-zinc-300 hover:border-amber-500/40 hover:text-white transition-colors bg-[#0d0f16]/60"
-              >
-                Explore Capabilities
-              </a>
-            </div>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="mt-20 pt-10 border-t border-[#1b1f2e] grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="p-4 rounded-2xl bg-[#0d0f16] border border-[#1f2438]/80">
-                <span className="font-mono text-2xl sm:text-3xl font-black text-amber-400">
-                  {stat.value}
-                </span>
-                <h2 className="text-xs sm:text-sm font-bold text-zinc-200 mt-1">
-                  {stat.label}
-                </h2>
-                <p className="text-[11px] text-zinc-500 mt-1 line-clamp-2 leading-relaxed">
-                  {stat.detail}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Selected Works (Projects) Section */}
-      <section id="projects" className="py-24 border-b border-[#1b1f2e]/60">
+      {/* ======================================================== */}
+      {/* 1. SELECTED WORKS SECTION (#work)                         */}
+      {/* ======================================================== */}
+      <section
+        id="work"
+        className={`py-24 border-b transition-colors duration-500 scroll-mt-24 ${
+          isDark ? "border-[#1f2438]/80 bg-[#0c0c0c]" : "border-[#e5e0d4] bg-[#f7f5f0]"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-amber-500 font-semibold">
+              <span className="text-xs font-mono uppercase tracking-widest text-amber-500 dark:text-amber-400 font-bold">
                 Case Studies & Inventions
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white mt-2">
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight uppercase mt-2">
                 Selected Works.
               </h2>
             </div>
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-md">
+            <p
+              className={`text-xs sm:text-sm max-w-md ${
+                isDark ? "text-zinc-400" : "text-zinc-600"
+              }`}
+            >
               Each engagement is a bespoke technological and visual artifact designed to capture industry leadership.
             </p>
           </div>
@@ -168,23 +69,43 @@ export default function BoboxAgencyPage() {
             {projects.map((proj) => (
               <div
                 key={proj.id}
-                className="group relative rounded-3xl bg-[#0d0f16] border border-[#1f2438] hover:border-amber-500/50 p-6 sm:p-8 transition-all duration-300 flex flex-col justify-between"
+                className={`group relative rounded-3xl border p-6 sm:p-8 transition-all duration-300 flex flex-col justify-between ${
+                  isDark
+                    ? "bg-[#11131c] border-[#1f2438] hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/5"
+                    : "bg-white border-[#e5e0d4] hover:border-amber-600/50 hover:shadow-xl hover:shadow-zinc-900/5"
+                }`}
               >
                 <div>
                   {/* Top Metadata */}
-                  <div className="flex items-center justify-between text-xs font-mono text-zinc-500 pb-4 border-b border-[#1b1f2e]">
-                    <span>{proj.client}</span>
-                    <span className="text-amber-400 font-semibold">{proj.year}</span>
+                  <div
+                    className={`flex items-center justify-between text-xs font-mono pb-4 border-b ${
+                      isDark
+                        ? "text-zinc-500 border-[#1f2438]"
+                        : "text-zinc-400 border-[#e5e0d4]"
+                    }`}
+                  >
+                    <span className="font-semibold uppercase tracking-wider">{proj.client}</span>
+                    <span className="text-amber-500 dark:text-amber-400 font-bold">{proj.year}</span>
                   </div>
 
                   {/* Title & Tagline */}
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mt-5 group-hover:text-amber-400 transition-colors">
+                  <h3
+                    className={`text-2xl sm:text-3xl font-bold mt-5 transition-colors uppercase ${
+                      isDark
+                        ? "text-white group-hover:text-amber-400"
+                        : "text-[#1a1917] group-hover:text-amber-600"
+                    }`}
+                  >
                     {proj.title}
                   </h3>
-                  <p className="text-xs font-mono uppercase text-zinc-400 mt-1">
+                  <p className="text-xs font-mono uppercase text-amber-500 dark:text-amber-400 mt-1 font-semibold">
                     {proj.category}
                   </p>
-                  <p className="text-sm text-zinc-400 mt-4 leading-relaxed">
+                  <p
+                    className={`text-sm mt-4 leading-relaxed ${
+                      isDark ? "text-zinc-400" : "text-zinc-600"
+                    }`}
+                  >
                     {proj.brief}
                   </p>
 
@@ -193,7 +114,11 @@ export default function BoboxAgencyPage() {
                     {proj.deliverables.map((item, dIdx) => (
                       <span
                         key={dIdx}
-                        className="text-[11px] px-2.5 py-1 rounded-lg bg-[#121520] border border-[#1f2438] text-zinc-300"
+                        className={`text-[11px] px-2.5 py-1 rounded-lg border font-medium ${
+                          isDark
+                            ? "bg-[#161824] border-[#25293d] text-zinc-300"
+                            : "bg-[#f4efe6] border-[#e0dad0] text-zinc-800"
+                        }`}
                       >
                         {item}
                       </span>
@@ -202,13 +127,21 @@ export default function BoboxAgencyPage() {
                 </div>
 
                 {/* Metrics Footer */}
-                <div className="mt-8 pt-6 border-t border-[#1b1f2e] grid grid-cols-3 gap-2">
+                <div
+                  className={`mt-8 pt-6 border-t grid grid-cols-3 gap-2 ${
+                    isDark ? "border-[#1f2438]" : "border-[#e5e0d4]"
+                  }`}
+                >
                   {proj.metrics.map((m, mIdx) => (
                     <div key={mIdx}>
-                      <span className="font-mono text-xs sm:text-sm font-bold text-amber-400 block truncate">
+                      <span className="font-mono text-xs sm:text-sm font-black text-amber-500 dark:text-amber-400 block truncate">
                         {m.value}
                       </span>
-                      <span className="text-[10px] text-zinc-500 truncate block">
+                      <span
+                        className={`text-[10px] uppercase tracking-wider truncate block font-medium ${
+                          isDark ? "text-zinc-500" : "text-zinc-500"
+                        }`}
+                      >
                         {m.label}
                       </span>
                     </div>
@@ -220,17 +153,30 @@ export default function BoboxAgencyPage() {
         </div>
       </section>
 
-      {/* Capabilities Section */}
-      <section id="capabilities" className="py-24 border-b border-[#1b1f2e]/60 bg-[#090b10]">
+      {/* ======================================================== */}
+      {/* 2. CAPABILITIES SECTION (#capabilities)                   */}
+      {/* ======================================================== */}
+      <section
+        id="capabilities"
+        className={`py-24 border-b transition-colors duration-500 scroll-mt-24 ${
+          isDark
+            ? "border-[#1f2438]/80 bg-[#08090d]"
+            : "border-[#e5e0d4] bg-[#f0ece1]"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-16">
-            <span className="text-xs font-mono uppercase tracking-widest text-amber-500 font-semibold">
+            <span className="text-xs font-mono uppercase tracking-widest text-amber-500 dark:text-amber-400 font-bold">
               Core Disciplines
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white mt-2">
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight uppercase mt-2">
               Capabilities.
             </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 mt-2">
+            <p
+              className={`text-xs sm:text-sm mt-2 ${
+                isDark ? "text-zinc-400" : "text-zinc-600"
+              }`}
+            >
               From foundational design tokens to real-time WebGL canvas shaders and fluid micro-interaction polish.
             </p>
           </div>
@@ -239,34 +185,47 @@ export default function BoboxAgencyPage() {
             {capabilities.map((cap) => (
               <div
                 key={cap.id}
-                className="p-6 sm:p-8 rounded-2xl bg-[#0d0f16] border border-[#1f2438] hover:border-amber-500/40 transition-colors"
+                className={`p-6 sm:p-8 rounded-2xl border transition-colors ${
+                  isDark
+                    ? "bg-[#11131c] border-[#1f2438] hover:border-amber-500/40"
+                    : "bg-white border-[#e5e0d4] hover:border-amber-600/40"
+                }`}
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                   <div className="lg:col-span-2">
-                    <span className="font-mono text-2xl sm:text-3xl font-black text-amber-500/40">
+                    <span className="font-mono text-2xl sm:text-3xl font-black text-amber-500/50">
                       {cap.number}
                     </span>
                   </div>
 
                   <div className="lg:col-span-6">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-wide">
                       {cap.title}
                     </h3>
-                    <p className="text-xs font-mono text-amber-400/90 mt-1">
+                    <p className="text-xs font-mono text-amber-500 dark:text-amber-400 mt-1 font-semibold">
                       {cap.tagline}
                     </p>
-                    <p className="text-xs sm:text-sm text-zinc-400 mt-3 leading-relaxed">
+                    <p
+                      className={`text-xs sm:text-sm mt-3 leading-relaxed ${
+                        isDark ? "text-zinc-400" : "text-zinc-600"
+                      }`}
+                    >
                       {cap.description}
                     </p>
                   </div>
 
                   <div className="lg:col-span-4 space-y-2">
-                    <span className="text-[10px] font-mono uppercase text-zinc-500 tracking-wider block">
+                    <span className="text-[10px] font-mono uppercase text-zinc-400 tracking-wider block font-bold">
                       Key Disciplines
                     </span>
                     {cap.disciplines.map((d, dIdx) => (
-                      <div key={dIdx} className="flex items-center gap-2 text-xs text-zinc-300">
-                        <CheckIcon className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                      <div
+                        key={dIdx}
+                        className={`flex items-center gap-2 text-xs font-medium ${
+                          isDark ? "text-zinc-300" : "text-zinc-700"
+                        }`}
+                      >
+                        <CheckIcon className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
                         <span>{d}</span>
                       </div>
                     ))}
@@ -278,20 +237,36 @@ export default function BoboxAgencyPage() {
         </div>
       </section>
 
-      {/* Manifesto Section */}
-      <section className="py-24 border-b border-[#1b1f2e]/60 relative overflow-hidden">
+      {/* ======================================================== */}
+      {/* 3. MANIFESTO                                             */}
+      {/* ======================================================== */}
+      <section
+        className={`py-24 border-b transition-colors duration-500 relative overflow-hidden ${
+          isDark ? "border-[#1f2438]/80 bg-[#0c0c0c]" : "border-[#e5e0d4] bg-[#f7f5f0]"
+        }`}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-xs font-mono uppercase tracking-widest text-amber-500 font-semibold">
+          <span className="text-xs font-mono uppercase tracking-widest text-amber-500 dark:text-amber-400 font-bold">
             {manifesto.title}
           </span>
-          <blockquote className="mt-8 text-2xl sm:text-4xl font-serif italic text-zinc-100 leading-snug">
+          <blockquote
+            className={`mt-8 text-2xl sm:text-4xl font-serif italic leading-snug ${
+              isDark ? "text-zinc-100" : "text-zinc-900"
+            }`}
+          >
             &ldquo;{manifesto.quote}&rdquo;
           </blockquote>
-          <p className="mt-4 text-xs font-mono text-amber-400 font-semibold tracking-wider">
+          <p className="mt-4 text-xs font-mono text-amber-500 dark:text-amber-400 font-semibold tracking-wider">
             — {manifesto.author}
           </p>
 
-          <div className="mt-12 space-y-4 text-xs sm:text-sm text-zinc-400 text-left max-w-2xl mx-auto leading-relaxed border-t border-[#1b1f2e] pt-8">
+          <div
+            className={`mt-12 space-y-4 text-xs sm:text-sm text-left max-w-2xl mx-auto leading-relaxed border-t pt-8 ${
+              isDark
+                ? "border-[#1f2438] text-zinc-400"
+                : "border-[#e5e0d4] text-zinc-600"
+            }`}
+          >
             {manifesto.paragraphs.map((para, pIdx) => (
               <p key={pIdx}>{para}</p>
             ))}
@@ -299,19 +274,32 @@ export default function BoboxAgencyPage() {
         </div>
       </section>
 
-      {/* Journal / Thought Leadership */}
-      <section className="py-24 border-b border-[#1b1f2e]/60 bg-[#090b10]">
+      {/* ======================================================== */}
+      {/* 4. THE JOURNAL SECTION (#journal)                        */}
+      {/* ======================================================== */}
+      <section
+        id="journal"
+        className={`py-24 border-b transition-colors duration-500 scroll-mt-24 ${
+          isDark
+            ? "border-[#1f2438]/80 bg-[#08090d]"
+            : "border-[#e5e0d4] bg-[#f0ece1]"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-amber-500 font-semibold">
+              <span className="text-xs font-mono uppercase tracking-widest text-amber-500 dark:text-amber-400 font-bold">
                 Intelligence & Theory
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white mt-2">
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight uppercase mt-2">
                 The Journal.
               </h2>
             </div>
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-sm">
+            <p
+              className={`text-xs sm:text-sm max-w-sm ${
+                isDark ? "text-zinc-400" : "text-zinc-600"
+              }`}
+            >
               Original essays on layout physics, neurobiology of dark surfaces, and design engineering.
             </p>
           </div>
@@ -320,29 +308,58 @@ export default function BoboxAgencyPage() {
             {journalItems.map((item) => (
               <div
                 key={item.id}
-                className="p-6 rounded-2xl bg-[#0d0f16] border border-[#1f2438] hover:border-amber-500/40 transition-colors flex flex-col justify-between"
+                className={`p-6 rounded-2xl border transition-colors flex flex-col justify-between ${
+                  isDark
+                    ? "bg-[#11131c] border-[#1f2438] hover:border-amber-500/40"
+                    : "bg-white border-[#e5e0d4] hover:border-amber-600/40"
+                }`}
               >
                 <div>
-                  <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
-                    <span className="text-amber-400">{item.category}</span>
+                  <div
+                    className={`flex items-center justify-between text-xs font-mono ${
+                      isDark ? "text-zinc-500" : "text-zinc-400"
+                    }`}
+                  >
+                    <span className="text-amber-500 dark:text-amber-400 font-bold uppercase">{item.category}</span>
                     <span>{item.date} • {item.readTime}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mt-3 hover:text-amber-400 transition-colors">
+                  <h3
+                    className={`text-lg font-bold mt-3 transition-colors ${
+                      isDark
+                        ? "text-white hover:text-amber-400"
+                        : "text-[#1a1917] hover:text-amber-600"
+                    }`}
+                  >
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-zinc-400 mt-2 leading-relaxed">
+                  <p
+                    className={`text-xs sm:text-sm mt-2 leading-relaxed ${
+                      isDark ? "text-zinc-400" : "text-zinc-600"
+                    }`}
+                  >
                     {item.excerpt}
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#1b1f2e] flex items-center justify-between">
+                <div
+                  className={`mt-6 pt-4 border-t flex items-center justify-between ${
+                    isDark ? "border-[#1f2438]" : "border-[#e5e0d4]"
+                  }`}
+                >
                   <div className="flex items-center gap-1.5">
                     {item.tags.map((t) => (
-                      <span key={t} className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#121520] text-zinc-400">
+                      <span
+                        key={t}
+                        className={`text-[10px] font-mono px-2 py-0.5 rounded ${
+                          isDark
+                            ? "bg-[#161824] text-zinc-400"
+                            : "bg-[#f4efe6] text-zinc-600"
+                        }`}
+                      >
                         #{t}
                       </span>
                     ))}
                   </div>
-                  <span className="text-xs font-semibold text-amber-400 inline-flex items-center gap-1">
+                  <span className="text-xs font-bold text-amber-500 dark:text-amber-400 inline-flex items-center gap-1 uppercase tracking-wider">
                     Read Essay →
                   </span>
                 </div>
@@ -352,10 +369,23 @@ export default function BoboxAgencyPage() {
         </div>
       </section>
 
-      {/* Lead Designer Attribution Card */}
-      <section className="py-20 border-b border-[#1b1f2e]/60">
+      {/* ======================================================== */}
+      {/* 5. LEAD DESIGNER CREDIT SECTION (#credit)                */}
+      {/* ======================================================== */}
+      <section
+        id="credit"
+        className={`py-20 border-b transition-colors duration-500 scroll-mt-24 ${
+          isDark ? "border-[#1f2438]/80 bg-[#0c0c0c]" : "border-[#e5e0d4] bg-[#f7f5f0]"
+        }`}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 rounded-3xl bg-gradient-to-br from-[#111422] via-[#0d0f16] to-[#07080b] border border-amber-500/30 shadow-2xl relative overflow-hidden">
+          <div
+            className={`p-8 rounded-3xl border shadow-2xl relative overflow-hidden ${
+              isDark
+                ? "bg-gradient-to-br from-[#161928] via-[#11131c] to-[#0c0c0c] border-amber-500/30"
+                : "bg-gradient-to-br from-white via-[#fcfbf9] to-[#f4efe6] border-amber-500/30"
+            }`}
+          >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
               {/* Monogram Fallback Avatar */}
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 text-zinc-950 font-black text-3xl flex items-center justify-center shadow-xl shadow-amber-500/25 flex-shrink-0">
@@ -363,31 +393,47 @@ export default function BoboxAgencyPage() {
               </div>
 
               <div className="flex-1 text-center sm:text-left">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-amber-500 dark:text-amber-400 font-bold px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30">
                   Lead UI & Frontend Designer
                 </span>
-                <h3 className="text-2xl font-bold text-white mt-2">
+                <h3
+                  className={`text-2xl font-bold mt-2 uppercase ${
+                    isDark ? "text-white" : "text-[#1a1917]"
+                  }`}
+                >
                   {designerCredit.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+                <p
+                  className={`text-xs sm:text-sm mt-1 ${
+                    isDark ? "text-zinc-400" : "text-zinc-600"
+                  }`}
+                >
                   {designerCredit.role} • {designerCredit.location}
                 </p>
-                <p className="text-xs sm:text-sm text-zinc-300 mt-3 italic leading-relaxed">
+                <p
+                  className={`text-xs sm:text-sm mt-3 italic leading-relaxed ${
+                    isDark ? "text-zinc-300" : "text-zinc-700"
+                  }`}
+                >
                   &ldquo;{designerCredit.note}&rdquo;
                 </p>
 
                 <div className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-3">
                   <Link
                     href="/"
-                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors"
+                    className="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors shadow-md shadow-amber-500/20"
                   >
-                    Explore 99 Showcase Hub
+                    Return to 99 Hub
                   </Link>
                   <a
                     href={`mailto:${contact.inquiriesEmail}`}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold border border-[#1f2438] text-zinc-300 hover:text-white hover:border-amber-500/40 transition-colors"
+                    className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider border transition-colors ${
+                      isDark
+                        ? "border-[#25293d] text-zinc-300 hover:text-white hover:border-amber-500/40"
+                        : "border-[#e0dad0] text-zinc-800 hover:text-zinc-950 hover:border-amber-600/40"
+                    }`}
                   >
-                    Direct Design Inquiry
+                    Direct Inquiry
                   </a>
                 </div>
               </div>
@@ -396,21 +442,34 @@ export default function BoboxAgencyPage() {
         </div>
       </section>
 
-      {/* Agency Footer */}
-      <footer className="py-12 bg-[#050608]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
+      {/* ======================================================== */}
+      {/* 6. AGENCY FOOTER                                         */}
+      {/* ======================================================== */}
+      <footer
+        className={`py-12 transition-colors duration-500 ${
+          isDark ? "bg-[#08090d]" : "bg-[#ece7db]"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
           <div className="flex items-center gap-3">
-            <span className="text-white font-bold tracking-wider">{agencyName}</span>
+            <span className="font-bold tracking-wider uppercase">{agencyName}</span>
             <span>•</span>
-            <span>{contact.studioLocation}</span>
+            <span className={isDark ? "text-zinc-400" : "text-zinc-600"}>
+              {contact.studioLocation}
+            </span>
           </div>
 
           <div className="flex items-center gap-4">
-            <Link href="/" className="hover:text-amber-400 transition-colors">
+            <Link
+              href="/"
+              className="hover:text-amber-500 transition-colors uppercase tracking-wider font-semibold"
+            >
               99 Hub Index
             </Link>
             <span>•</span>
-            <span className="text-amber-400 font-semibold">{contact.availability}</span>
+            <span className="text-amber-500 dark:text-amber-400 font-bold uppercase">
+              {contact.availability}
+            </span>
           </div>
         </div>
       </footer>
