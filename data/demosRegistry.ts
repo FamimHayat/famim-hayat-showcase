@@ -165,14 +165,14 @@ export const DEMOS_REGISTRY: DemoItem[] = [
   {
     id: "bobox-agency",
     slug: "/demos/agency/bobox-agency",
-    title: "Bobox Agency",
+    title: "Byteflyo Agency",
     category: "Agency",
     categorySlug: "agency",
     status: "live",
     description:
-      "Avant-garde digital design & motion engineering studio landing page. Featuring kinetic typography, obsidian canvas, amber-gold accents, and high-conversion client showcases.",
-    tags: ["Creative Agency", "Obsidian & Gold", "Kinetic UI", "Design Systems"],
-    accentColor: "#f59e0b",
+      "Avant-garde digital design & motion engineering studio landing page. Featuring kinetic typography, #0a0a0a obsidian canvas, warm off-white glow accents, and high-conversion client showcases.",
+    tags: ["Creative Agency", "Minimalist-Brutalist", "Kinetic UI", "Design Systems"],
+    accentColor: "#ffffff",
     featured: true,
     year: 2026,
     highlight: "Lead Showcase Flagship",

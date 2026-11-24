@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bobox Agency | Avant-Garde Digital Flagship & Motion Engineering",
+  title: "Byteflyo Agency | Avant-Garde Digital Flagship & Motion Engineering",
   description:
-    "Live showcase of Bobox Agency. Deep obsidian canvas, amber-gold accents, kinetic typography, and high-conversion editorial UX.",
+    "Live showcase of Byteflyo Agency. Deep #0a0a0a obsidian canvas, warm off-white luminous accents, kinetic typography, and high-conversion editorial UX.",
 };
 
 export default function BoboxAgencyLayout({

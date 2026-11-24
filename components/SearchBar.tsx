@@ -20,7 +20,7 @@ export function SearchBar({
     <div className="w-full">
       <div className="relative flex items-center">
         {/* Left Search Icon */}
-        <div className="absolute left-3.5 text-zinc-400 dark:text-zinc-500 pointer-events-none">
+        <div className="absolute left-3.5 text-black/45 dark:text-[#ededed]/50 pointer-events-none">
           <SearchIcon className="w-4 h-4" />
         </div>
 
@@ -31,7 +31,7 @@ export function SearchBar({
           onChange={(e) => onChange(e.target.value)}
           placeholder="Search 99 demos by name, industry, keywords, or slug..."
           aria-label="Search demos"
-          className="w-full pl-10 pr-28 py-2.5 rounded-xl text-xs sm:text-sm bg-white dark:bg-[#0d0f16] border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500/50 transition-all shadow-sm"
+          className="w-full pl-10 pr-28 py-2.5 rounded-none text-xs sm:text-sm bg-white dark:bg-black/80 border border-black/20 dark:border-white/20 text-[#0a0a0a] dark:text-[#ededed] placeholder-black/40 dark:placeholder-[#ededed]/40 focus:outline-none focus:border-black/60 dark:focus:border-white/50 transition-all"
         />
 
         {/* Right Actions: Result Counter + Clear Button */}
@@ -40,38 +40,38 @@ export function SearchBar({
             <button
               type="button"
               onClick={() => onChange("")}
-              className="p-1 rounded-md text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+              className="p-1 rounded-none text-black/50 dark:text-[#ededed]/60 hover:text-black dark:hover:text-white transition-colors"
               title="Clear search"
             >
               <CloseIcon className="w-3.5 h-3.5" />
             </button>
           ) : (
-            <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 dark:text-zinc-500 bg-zinc-100 dark:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-700">
+            <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-black/50 dark:text-[#ededed]/50 bg-black/5 dark:bg-white/5 rounded-none border border-black/15 dark:border-white/15">
               /
             </kbd>
           )}
 
-          <div className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500 border-l border-zinc-200 dark:border-zinc-800 pl-2">
-            <span className="font-semibold text-zinc-700 dark:text-zinc-300">
+          <div className="text-[11px] font-mono text-black/50 dark:text-[#ededed]/50 border-l border-black/15 dark:border-white/15 pl-2">
+            <span className="font-semibold text-[#0a0a0a] dark:text-white">
               {resultCount}
             </span>
-            <span className="text-zinc-400 dark:text-zinc-600">/{totalCount}</span>
+            <span className="text-black/40 dark:text-[#ededed]/40">/{totalCount}</span>
           </div>
         </div>
       </div>
 
       {/* Active Filter Context Hint */}
       {(value || activeCategoryLabel !== "All") && (
-        <div className="mt-2 flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-400 px-1">
+        <div className="mt-2 flex items-center justify-between text-[11px] text-black/60 dark:text-[#ededed]/65 px-1">
           <div className="flex items-center gap-1.5">
-            <span>Filtered by:</span>
-            <span className="font-semibold text-amber-600 dark:text-amber-400">
+            <span className="uppercase tracking-[0.2em] text-[10px]">Filtered by:</span>
+            <span className="font-semibold text-[#0a0a0a] dark:text-white text-glow">
               {activeCategoryLabel}
             </span>
             {value && (
               <>
                 <span>• matching:</span>
-                <span className="font-mono text-zinc-800 dark:text-zinc-200">
+                <span className="font-mono text-[#0a0a0a] dark:text-white">
                   &ldquo;{value}&rdquo;
                 </span>
               </>
@@ -83,7 +83,7 @@ export function SearchBar({
               onClick={() => {
                 onChange("");
               }}
-              className="text-amber-600 dark:text-amber-400 hover:underline"
+              className="text-[#0a0a0a] dark:text-white uppercase tracking-[0.15em] text-[10px] font-semibold hover:underline"
             >
               Reset Filters
             </button>

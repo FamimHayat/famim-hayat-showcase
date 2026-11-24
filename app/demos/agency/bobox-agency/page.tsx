@@ -18,10 +18,10 @@ export default function BoboxAgencyPage() {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-500 scroll-smooth selection:bg-amber-500 selection:text-black ${
+      className={`min-h-screen transition-colors duration-500 scroll-smooth selection:bg-[#ededed] selection:text-[#0a0a0a] ${
         isDark
-          ? "bg-[#0c0c0c] text-[#f8fafc]"
-          : "bg-[#f7f5f0] text-[#1a1917]"
+          ? "bg-[#0a0a0a] text-[#ededed]"
+          : "bg-[#fafaf9] text-[#0a0a0a]"
       }`}
     >
       {/* 1. Sticky Top Nav & Avant-Garde Editorial Hero */}
@@ -35,29 +35,37 @@ export default function BoboxAgencyPage() {
       {/* ======================================================== */}
       <section
         className={`py-24 border-b transition-colors duration-500 relative overflow-hidden ${
-          isDark ? "border-[#1f2438]/80 bg-[#0c0c0c]" : "border-[#e5e0d4] bg-[#f7f5f0]"
+          isDark ? "border-white/15 bg-[#0a0a0a]" : "border-black/15 bg-[#fafaf9]"
         }`}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-xs font-mono uppercase tracking-widest text-amber-500 dark:text-amber-400 font-bold">
+          <span
+            className={`text-[11px] font-mono uppercase tracking-[0.25em] font-bold ${
+              isDark ? "text-white text-glow-hard" : "text-[#0a0a0a]"
+            }`}
+          >
             {manifesto.title}
           </span>
           <blockquote
-            className={`mt-8 text-2xl sm:text-4xl font-serif italic leading-snug ${
-              isDark ? "text-zinc-100" : "text-zinc-900"
+            className={`mt-8 text-2xl sm:text-4xl font-extrabold tracking-tighter lowercase leading-snug ${
+              isDark ? "text-white text-glow" : "text-[#0a0a0a]"
             }`}
           >
             &ldquo;{manifesto.quote}&rdquo;
           </blockquote>
-          <p className="mt-4 text-xs font-mono text-amber-500 dark:text-amber-400 font-semibold tracking-wider">
+          <p
+            className={`mt-4 text-[11px] font-mono uppercase font-semibold tracking-[0.25em] ${
+              isDark ? "text-[#ededed]/75" : "text-black/65"
+            }`}
+          >
             — {manifesto.author}
           </p>
 
           <div
             className={`mt-12 space-y-4 text-xs sm:text-sm text-left max-w-2xl mx-auto leading-relaxed border-t pt-8 ${
               isDark
-                ? "border-[#1f2438] text-zinc-400"
-                : "border-[#e5e0d4] text-zinc-600"
+                ? "border-white/15 text-[#ededed]/75"
+                : "border-black/15 text-black/70"
             }`}
           >
             {manifesto.paragraphs.map((para, pIdx) => (
@@ -74,23 +82,31 @@ export default function BoboxAgencyPage() {
         id="journal"
         className={`py-24 border-b transition-colors duration-500 scroll-mt-20 ${
           isDark
-            ? "border-[#1f2438]/80 bg-[#08090d]"
-            : "border-[#e5e0d4] bg-[#f0ece1]"
+            ? "border-white/15 bg-[#0a0a0a]"
+            : "border-black/15 bg-[#f4f4f2]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-amber-500 dark:text-amber-400 font-bold">
-                Intelligence & Theory
+              <span
+                className={`text-[10px] font-mono uppercase tracking-[0.25em] font-bold ${
+                  isDark ? "text-[#ededed]/70" : "text-black/60"
+                }`}
+              >
+                Intelligence &amp; Theory
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight uppercase mt-2">
-                The Journal.
+              <h2
+                className={`text-3xl sm:text-5xl font-extrabold tracking-tighter lowercase mt-2 ${
+                  isDark ? "text-white text-glow" : "text-[#0a0a0a]"
+                }`}
+              >
+                the journal.
               </h2>
             </div>
             <p
               className={`text-xs sm:text-sm max-w-sm ${
-                isDark ? "text-zinc-400" : "text-zinc-600"
+                isDark ? "text-[#ededed]/70" : "text-black/65"
               }`}
             >
               Original essays on layout physics, neurobiology of dark surfaces, and design engineering.
@@ -101,58 +117,68 @@ export default function BoboxAgencyPage() {
             {journalItems.map((item) => (
               <div
                 key={item.id}
-                className={`p-6 rounded-2xl border transition-colors flex flex-col justify-between ${
+                className={`p-6 rounded-none border transition-colors flex flex-col justify-between ${
                   isDark
-                    ? "bg-[#11131c] border-[#1f2438] hover:border-amber-500/40"
-                    : "bg-white border-[#e5e0d4] hover:border-amber-600/40"
+                    ? "bg-black/80 border-white/15 hover:border-white/50"
+                    : "bg-white border-black/15 hover:border-black/50"
                 }`}
               >
                 <div>
                   <div
-                    className={`flex items-center justify-between text-xs font-mono ${
-                      isDark ? "text-zinc-500" : "text-zinc-400"
+                    className={`flex items-center justify-between text-[11px] font-mono ${
+                      isDark ? "text-[#ededed]/55" : "text-black/55"
                     }`}
                   >
-                    <span className="text-amber-500 dark:text-amber-400 font-bold uppercase">{item.category}</span>
+                    <span
+                      className={`font-bold uppercase tracking-[0.2em] ${
+                        isDark ? "text-white" : "text-[#0a0a0a]"
+                      }`}
+                    >
+                      {item.category}
+                    </span>
                     <span>{item.date} • {item.readTime}</span>
                   </div>
                   <h3
-                    className={`text-lg font-bold mt-3 transition-colors ${
+                    className={`text-lg font-bold tracking-tight mt-3 transition-all ${
                       isDark
-                        ? "text-white hover:text-amber-400"
-                        : "text-[#1a1917] hover:text-amber-600"
+                        ? "text-[#ededed] hover:text-white hover:text-glow-hard"
+                        : "text-[#0a0a0a]"
                     }`}
                   >
                     {item.title}
                   </h3>
                   <p
                     className={`text-xs sm:text-sm mt-2 leading-relaxed ${
-                      isDark ? "text-zinc-400" : "text-zinc-600"
+                      isDark ? "text-[#ededed]/70" : "text-black/65"
                     }`}
                   >
                     {item.excerpt}
                   </p>
                 </div>
                 <div
-                  className={`mt-6 pt-4 border-t flex items-center justify-between ${
-                    isDark ? "border-[#1f2438]" : "border-[#e5e0d4]"
+                  className={`mt-6 pt-4 border-t flex items-center justify-between gap-2 ${
+                    isDark ? "border-white/15" : "border-black/15"
                   }`}
                 >
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex flex-wrap items-center gap-1.5">
                     {item.tags.map((t) => (
                       <span
                         key={t}
-                        className={`text-[10px] font-mono px-2 py-0.5 rounded ${
+                        className={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-none border ${
                           isDark
-                            ? "bg-[#161824] text-zinc-400"
-                            : "bg-[#f4efe6] text-zinc-600"
+                            ? "bg-[#0a0a0a] border-white/15 text-[#ededed]/70"
+                            : "bg-black/5 border-black/15 text-black/70"
                         }`}
                       >
                         #{t}
                       </span>
                     ))}
                   </div>
-                  <span className="text-xs font-bold text-amber-500 dark:text-amber-400 inline-flex items-center gap-1 uppercase tracking-wider">
+                  <span
+                    className={`text-[11px] font-mono font-bold inline-flex items-center gap-1 uppercase tracking-[0.2em] shrink-0 ${
+                      isDark ? "text-white" : "text-[#0a0a0a]"
+                    }`}
+                  >
                     Read Essay →
                   </span>
                 </div>

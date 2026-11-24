@@ -35,26 +35,26 @@ export function CategoryFilterTabs({
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => onSelectCategory(cat.id)}
-                className={`group flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 border snap-start select-none focus:outline-none focus:ring-2 focus:ring-amber-500/40 ${
+                className={`group flex items-center gap-2 px-3.5 py-2 rounded-none text-xs font-semibold whitespace-nowrap transition-all duration-200 border snap-start select-none focus:outline-none focus:ring-1 focus:ring-black/40 dark:focus:ring-white/40 ${
                   isActive
-                    ? "bg-amber-500 text-zinc-950 border-amber-500 shadow-sm shadow-amber-500/25 font-bold"
-                    : "bg-white/70 dark:bg-[#0d0f16]/80 text-zinc-700 dark:text-zinc-300 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-950 dark:hover:text-white"
+                    ? "bg-[#0a0a0a] text-white dark:bg-black/90 dark:text-white border-[#0a0a0a] dark:border-white/50 text-glow font-bold"
+                    : "bg-white dark:bg-black/80 text-black/70 dark:text-white/75 border-black/15 dark:border-white/15 hover:border-black/45 dark:hover:border-white/45 hover:text-[#0a0a0a] dark:hover:text-white"
                 }`}
               >
                 <CategoryIcon
                   name={cat.iconName}
                   className={`w-3.5 h-3.5 transition-colors ${
                     isActive
-                      ? "text-zinc-950"
-                      : "text-zinc-400 group-hover:text-amber-500 dark:group-hover:text-amber-400"
+                      ? "text-white"
+                      : "text-black/45 dark:text-white/55 group-hover:text-black dark:group-hover:text-white"
                   }`}
                 />
-                <span>{cat.label}</span>
+                <span className="lowercase tracking-tight">{cat.label}</span>
                 <span
-                  className={`text-[10px] font-mono px-1.5 py-0.2 rounded-md transition-colors ${
+                  className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full transition-colors ${
                     isActive
-                      ? "bg-black/15 text-zinc-950 font-bold"
-                      : "bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400"
+                      ? "bg-white/15 text-white font-bold"
+                      : "bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/70"
                   }`}
                 >
                   {count}

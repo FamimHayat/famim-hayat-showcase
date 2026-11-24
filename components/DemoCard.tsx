@@ -13,112 +13,127 @@ export function DemoCard({ demo, onPreviewClick }: DemoCardProps) {
 
   return (
     <div
-      className={`group relative flex flex-col justify-between rounded-2xl border transition-all duration-300 overflow-hidden ${
+      className={`group relative flex flex-col justify-between rounded-none border transition-all duration-300 overflow-hidden ${
         isLive
-          ? "bg-white dark:bg-[#0d0f16] border-amber-500/40 hover:border-amber-500 hover:shadow-xl hover:shadow-amber-500/10 dark:hover:shadow-amber-500/5 ring-1 ring-amber-500/20"
-          : "bg-white/90 dark:bg-[#0c0e14]/90 border-zinc-200/90 dark:border-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md"
+          ? "bg-white dark:bg-[#0a0a0a] border-black/40 dark:border-white/45 hover:border-black dark:hover:border-white/80"
+          : "bg-white dark:bg-[#0a0a0a] border-black/15 dark:border-white/15 hover:border-black/45 dark:hover:border-white/45"
       }`}
     >
       {/* Top Visual Graphic Thumbnail */}
-      <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-[#090b10] dark:to-[#121622] flex items-center justify-center border-b border-zinc-200/80 dark:border-zinc-800/80">
-        {/* Industry Geometric Pattern Backdrop */}
+      <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-black/[0.03] dark:bg-black/90 flex items-center justify-center border-b border-black/15 dark:border-white/15">
+        {/* Industry Geometric Dot Grid Backdrop */}
         <div
-          className="absolute inset-0 opacity-20 dark:opacity-30 group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+          className="absolute inset-0 opacity-20 dark:opacity-25 group-hover:scale-105 transition-transform duration-500 pointer-events-none"
           style={{
-            backgroundImage: `radial-gradient(circle at 50% 50%, ${demo.accentColor}33 1px, transparent 1px)`,
+            backgroundImage: isLive
+              ? "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.28) 1px, transparent 1px)"
+              : "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.16) 1px, transparent 1px)",
             backgroundSize: "20px 20px",
           }}
         />
 
-        {/* Ambient Radial Accent Glow */}
+        {/* Subtle Monochrome Radial Glow */}
         <div
-          className="absolute w-36 h-36 rounded-full blur-2xl pointer-events-none opacity-20 dark:opacity-30 transition-opacity duration-300 group-hover:opacity-40"
-          style={{ backgroundColor: demo.accentColor }}
+          className={`absolute w-32 h-32 rounded-full blur-2xl pointer-events-none transition-opacity duration-300 ${
+            isLive
+              ? "bg-black/10 dark:bg-white/20 opacity-40 group-hover:opacity-65"
+              : "bg-black/5 dark:bg-white/10 opacity-20 group-hover:opacity-40"
+          }`}
         />
 
         {/* Center Industry Emblem */}
-        <div className="relative z-10 flex flex-col items-center justify-center gap-2 text-center p-4">
+        <div className="relative z-10 flex flex-col items-center justify-center gap-2 text-center px-3 pt-4">
           <div
-            className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-lg ${
+            className={`w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110 border ${
               isLive
-                ? "bg-gradient-to-br from-amber-500 to-amber-600 text-zinc-950 shadow-amber-500/30"
-                : "bg-white dark:bg-[#151928] text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700"
+                ? "bg-[#0a0a0a] text-white dark:bg-white dark:text-[#0a0a0a] border-black/30 dark:border-white"
+                : "bg-white dark:bg-black/80 text-[#0a0a0a] dark:text-[#ededed] border-black/15 dark:border-white/25"
             }`}
           >
             {isLive ? (
-              <SparklesIcon className="w-7 h-7 text-zinc-950 animate-pulse" />
+              <SparklesIcon className="w-5 h-5 animate-pulse" />
             ) : (
-              <CategoryIcon name={demo.category.toLowerCase()} className="w-6 h-6" size={24} />
+              <CategoryIcon name={demo.category.toLowerCase()} className="w-5 h-5" size={20} />
             )}
           </div>
-          <span className="text-[11px] font-mono tracking-wider uppercase text-zinc-500 dark:text-zinc-400 font-medium">
+          <span className="text-[9px] font-mono tracking-[0.22em] uppercase text-black/55 dark:text-[#ededed]/60 font-medium max-w-full truncate">
             {demo.category} • #{demo.id.slice(0, 10)}
           </span>
         </div>
 
         {/* Category Pill (Top Left) */}
-        <div className="absolute top-3 left-3 z-10">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white/90 dark:bg-black/70 backdrop-blur-md text-zinc-800 dark:text-zinc-200 border border-zinc-200/80 dark:border-zinc-700/60 shadow-sm">
-            <CategoryIcon name={demo.category.toLowerCase()} className="w-3 h-3 text-amber-500" />
+        <div className="absolute top-2.5 left-2.5 z-10">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-mono uppercase tracking-[0.18em] font-semibold bg-white/90 dark:bg-black/80 backdrop-blur-md text-[#0a0a0a] dark:text-[#ededed] border border-black/15 dark:border-white/20">
+            <CategoryIcon name={demo.category.toLowerCase()} className="w-2.5 h-2.5 text-[#0a0a0a] dark:text-white" />
             <span>{demo.category}</span>
           </span>
         </div>
 
         {/* Status Badge (Top Right) */}
-        <div className="absolute top-3 right-3 z-10">
+        <div className="absolute top-2.5 right-2.5 z-10">
           {isLive ? (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 backdrop-blur-md shadow-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] font-mono uppercase tracking-[0.18em] font-bold bg-[#0a0a0a] text-white dark:bg-white/15 dark:text-white border border-black/20 dark:border-white/40 backdrop-blur-md">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
               </span>
-              Live Showcase
+              Live
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-medium bg-zinc-200/80 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-400 border border-zinc-300/60 dark:border-zinc-700/60 backdrop-blur-md">
-              Coming Soon
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-mono uppercase tracking-[0.18em] font-medium bg-black/5 dark:bg-black/80 text-black/60 dark:text-[#ededed]/60 border border-black/15 dark:border-white/15 backdrop-blur-md">
+              Soon
             </span>
           )}
         </div>
       </div>
 
       {/* Card Content Body */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-        <div>
+      <div className="p-4 flex-1 flex flex-col justify-between min-w-0">
+        <div className="min-w-0">
           {/* Title & Slug Header */}
           <div className="flex items-start justify-between gap-2">
-            <div>
-              <h2 className="text-base sm:text-lg font-bold text-zinc-950 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+            <div className="min-w-0 flex-1">
+              <h2
+                className={`text-base sm:text-lg font-bold tracking-tighter lowercase leading-snug truncate transition-all text-glow-lighter group-hover:text-glow-lighter ${
+                  isLive
+                    ? "text-[#0a0a0a] dark:text-white"
+                    : "text-[#0a0a0a] dark:text-[#ededed] group-hover:text-black dark:group-hover:text-white"
+                }`}
+                title={demo.title}
+              >
                 {demo.title}
               </h2>
-              <span className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
+              <span
+                className="block truncate text-[10px] font-mono text-black/45 dark:text-white/55 mt-0.5"
+                title={demo.slug}
+              >
                 {demo.slug}
               </span>
             </div>
             {demo.year && (
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800/80 text-zinc-500 dark:text-zinc-400">
+              <span className="shrink-0 text-[9px] font-mono px-1.5 py-0.5 rounded-none bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/15 text-black/60 dark:text-white/70">
                 {demo.year}
               </span>
             )}
           </div>
 
           {/* Description */}
-          <p className="mt-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3 leading-relaxed">
+          <p className="mt-2 text-xs text-black/65 dark:text-white/75 line-clamp-3 leading-relaxed">
             {demo.description}
           </p>
 
           {/* Tag Badges */}
-          <div className="mt-3 flex flex-wrap gap-1.5">
+          <div className="mt-3 flex flex-wrap gap-1">
             {demo.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] px-2 py-0.5 rounded-md font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-400 border border-zinc-200/70 dark:border-zinc-700/50"
+                className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-none font-medium bg-black/5 dark:bg-black/80 text-black/70 dark:text-white/70 border border-black/15 dark:border-white/15 max-w-full truncate"
               >
                 {tag}
               </span>
             ))}
             {demo.tags.length > 3 && (
-              <span className="text-[10px] px-1.5 py-0.5 rounded text-zinc-400 dark:text-zinc-500">
+              <span className="text-[9px] font-mono px-1 py-0.5 rounded-none text-black/45 dark:text-white/50">
                 +{demo.tags.length - 3}
               </span>
             )}
@@ -126,30 +141,30 @@ export function DemoCard({ demo, onPreviewClick }: DemoCardProps) {
         </div>
 
         {/* Card Footer / Action Button */}
-        <div className="mt-5 pt-3.5 border-t border-zinc-200/80 dark:border-zinc-800/80 flex items-center justify-between">
-          <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
+        <div className="mt-4 pt-3 border-t border-black/15 dark:border-white/15 flex items-center justify-between gap-2">
+          <span className="text-[9px] font-mono uppercase tracking-[0.18em] text-black/55 dark:text-white/70 truncate">
             {isLive ? (
-              <span className="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-                <span>Fully Interactive</span>
+              <span className="font-semibold text-[#0a0a0a] dark:text-white">
+                Interactive
               </span>
             ) : (
-              <span>Architecture Ready</span>
+              <span>Spec Ready</span>
             )}
           </span>
 
           {isLive ? (
             <Link
               href={demo.slug}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 text-zinc-950 hover:bg-amber-400 transition-colors shadow-sm shadow-amber-500/20 group/btn"
+              className="shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-none text-[10px] font-bold uppercase tracking-[0.15em] bg-[#0a0a0a] text-white dark:bg-black/90 dark:text-white border border-black/20 dark:border-white/45 hover:border-white/80 text-glow transition-all group/btn"
             >
-              <span>Explore Demo</span>
-              <ArrowUpRightIcon className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+              <span>Explore</span>
+              <ArrowUpRightIcon className="w-3 h-3 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
             </Link>
           ) : (
             <button
               type="button"
               onClick={() => onPreviewClick?.(demo)}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:border-amber-500/40 hover:text-amber-500 transition-colors"
+              className="shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-none text-[10px] font-mono uppercase tracking-[0.15em] font-medium border border-black/20 dark:border-white/20 text-[#0a0a0a] dark:text-[#ededed] hover:border-black/60 dark:hover:border-white/50 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
             >
               <span>Concept Spec</span>
             </button>

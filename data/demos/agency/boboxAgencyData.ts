@@ -1,6 +1,6 @@
 /**
- * Bobox Agency Showcase Data
- * Obsidian (#07080b / #0d0f16) + Amber-Gold (#f59e0b / #fbbf24) Aesthetic
+ * Byteflyo Agency Showcase Data
+ * Minimalist-Brutalist Obsidian (#0a0a0a) + Warm Off-White Glow (#ededed / #ffffff) Aesthetic
  * Crafted with bespoke original copy, case studies, capabilities, and journal items.
  */
 
@@ -121,26 +121,26 @@ export const designerCredit: DesignerCredit = {
 };
 
 export const boboxBrandColors: BoboxBrandColors = {
-  name: "Obsidian & Amber-Gold",
+  name: "Obsidian & Luminous Monochrome",
   obsidian: {
-    canvas: "#07080b",
-    surface: "#0d0f16",
-    surfaceRaised: "#121520",
-    surfaceHighlight: "#181d2c",
-    border: "#1f2438",
-    borderSubtle: "rgba(255, 255, 255, 0.08)",
-    textPrimary: "#f8fafc",
-    textSecondary: "#94a3b8",
-    textMuted: "#64748b",
+    canvas: "#0a0a0a",
+    surface: "#0a0a0a",
+    surfaceRaised: "rgba(0, 0, 0, 0.8)",
+    surfaceHighlight: "rgba(0, 0, 0, 0.9)",
+    border: "rgba(255, 255, 255, 0.15)",
+    borderSubtle: "rgba(255, 255, 255, 0.15)",
+    textPrimary: "#ededed",
+    textSecondary: "#a1a1aa",
+    textMuted: "#71717a",
   },
   amberGold: {
-    accent: "#f59e0b",
-    accentHover: "#fbbf24",
-    accentDark: "#d97706",
-    accentGlow: "rgba(245, 158, 11, 0.28)",
-    accentSubtle: "rgba(245, 158, 11, 0.12)",
-    metallicGold: "#eab308",
-    champagneGold: "#fde68a",
+    accent: "#ffffff",
+    accentHover: "#ededed",
+    accentDark: "#d4d4d8",
+    accentGlow: "rgba(245, 239, 230, 0.7)",
+    accentSubtle: "rgba(255, 255, 255, 0.08)",
+    metallicGold: "#ededed",
+    champagneGold: "#f5efe6",
   },
 };
 
@@ -437,11 +437,11 @@ export const boboxJournalItems: BoboxJournalItem[] = [
 ];
 
 export const boboxAgencyData: BoboxData = {
-  agencyName: "Bobox Agency",
+  agencyName: "Byteflyo Agency",
   heroTagline: "Avant-Garde Digital Design & Motion Engineering Atelier",
   heroHeadline: "We sculpt high-conversion digital flagships for category pioneers.",
   heroSubheadline:
-    "Grounded in deep obsidian canvases, illuminated by amber-gold precision accents, and engineered with responsive spatial rhythm. Built by craftsmen who believe every pixel is a promise.",
+    "Grounded in deep obsidian canvases, illuminated by warm off-white luminous precision, and engineered with responsive spatial rhythm. Built by craftsmen who believe every pixel is a promise.",
   brandColors: boboxBrandColors,
   designerCredit,
   stats: [
@@ -470,18 +470,18 @@ export const boboxAgencyData: BoboxData = {
   projects: boboxProjects,
   journalItems: boboxJournalItems,
   manifesto: {
-    title: "The Bobox Design Manifesto",
+    title: "The Byteflyo Agency Design Manifesto",
     paragraphs: [
       "The modern web is inundated with sanitized templates, cookie-cutter cards, and lifeless interfaces that look indistinguishable from one another. We reject the generic default.",
-      "At Bobox Agency, design is treated as architectural discipline. We believe deep contrast commands reverence. Obsidian provides the stillness of an art gallery, allowing amber-gold focal points to lead human attention with surgical accuracy.",
+      "At Byteflyo Agency, design is treated as architectural discipline. We believe deep contrast commands reverence. Obsidian (#0a0a0a) provides the stillness of an art gallery, allowing luminous monochrome focal points to lead human attention with surgical accuracy.",
       "Every curve, every easing curve, every typographic kerning pair must serve both beauty and commercial velocity. When high craft meets rock-solid engineering, conversion is not an accident—it is inevitable.",
     ],
     quote: "True luxury is the quiet confidence of immaculate restraint.",
     author: "Famim Hayat — Lead UI & Frontend Designer",
   },
   contact: {
-    inquiriesEmail: "collaborate@bobox.agency",
-    pressEmail: "press@bobox.agency",
+    inquiriesEmail: "collaborate@byteflyo.agency",
+    pressEmail: "press@byteflyo.agency",
     studioLocation: "Dhaka • Zurich • Berlin",
     timezone: "UTC +6 / Global Asynchronous",
     availability: "Accepting select flagship projects for Q2 2026",
